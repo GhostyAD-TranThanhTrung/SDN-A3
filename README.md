@@ -44,7 +44,8 @@ When deploying to Vercel, you need to set these environment variables in your Ve
 
 ## API Endpoints
 
-- `GET /` - Health check
+- `GET /` - Server status page with database connection status (web interface)
+- `GET /health` - JSON health check endpoint with detailed system status
 - `POST /users/register` - User registration
 - `POST /users/login` - User login
 - `GET /quizzes` - Get all quizzes
@@ -52,6 +53,28 @@ When deploying to Vercel, you need to set these environment variables in your Ve
 - `GET /quizzes/:id` - Get quiz by ID
 - `PUT /quizzes/:id` - Update quiz (authenticated)
 - `DELETE /quizzes/:id` - Delete quiz (authenticated)
+
+## Database Connection Monitoring
+
+The application includes built-in database monitoring that you can check on Vercel:
+
+1. **Web Status Page** (`GET /`):
+   - Visit your Vercel URL to see a formatted status page
+   - Shows real-time database connection status with visual indicators
+   - Displays server uptime and environment information
+   - Lists all available API endpoints
+
+2. **JSON Health Check** (`GET /health`):
+   - Returns detailed JSON health status
+   - Includes database connection state, server uptime, and timestamps
+   - Returns HTTP 200 for healthy, 503 for unhealthy
+   - Useful for monitoring tools and automated health checks
+
+3. **Connection States**:
+   - ✅ Connected: Database is connected and ready
+   - 🔄 Connecting: Database connection in progress
+   - ❌ Disconnected: Database connection failed
+   - ⚠️ Disconnecting: Database is disconnecting
 
 ## CORS Configuration
 
